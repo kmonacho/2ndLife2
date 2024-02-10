@@ -1,0 +1,59 @@
+@charset "UTF-8";
+a {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+}
+.contener {
+	display : grid;
+	grid-template-columns : 200px 200px  200px 200px ;
+	grid-template-rows : 300px 300px 300px 300px ;
+	gap : 20px;
+	
+}
+.box {
+	font-size : 12px;
+	width : 200px;
+	height: 300px;
+	border : 1px #DDDDDD solid;
+	text-align: left;	
+	background-color:#FFFFFF;
+}
+p {
+	margin-left: 15px;
+}
+body {
+
+	background-color:#EEEEEE
+}
+   
+
+/* Forms --------------------------------------------------------------------------------------- */
+
+form label {
+    float: left;
+    width: 200px;
+    margin: 3px 0px 0px 0px;
+}
+
+form legend }
+	margin: 3px 3px 0px 0px;
+    border: 1px #000 solid;
+}
+form input {
+    margin: 3px 3px 0px 0px;
+    border: 1px #999 solid;
+}
+
+form input.sansLabel {
+    margin-left: 200px;
+}
+
+form .requis {
+    color: #c00;
+}
+form .succes {
+    color: #090;
+}
