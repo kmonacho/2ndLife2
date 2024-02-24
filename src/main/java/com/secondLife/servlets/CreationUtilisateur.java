@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secondLife.beans.Utilisateur;
+import com.secondLife.sql.Login;
+
 /**
  * Servlet implementation class CreationUtilisateur
  */
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CreationUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/WEB-INF/creationUtilisateur.jsp";
+	private static final String VUE_OK = "WEB-INF/login.jsp";
        
 
 	/**
@@ -37,6 +41,18 @@ public class CreationUtilisateur extends HttpServlet {
 		String eamil = request.getParameter("email");
 		String adresse = request.getParameter("adresse");
 		affiche (username);
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setUsername(username);
+		utilisateur.setPassword(password2);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setNom(nom);
+		utilisateur.setEmail(eamil);
+		utilisateur.setAdresse(adresse);
+		
+		Login login = new Login();
+		boolean userRecord = login.creerUtilisateur(utilisateur);
+		if (userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 	private void affiche(String str) {

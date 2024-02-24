@@ -14,15 +14,42 @@
 <body>
 <%@ include file="menu.jsp" %>
 <h1>Catégorie Sport</h1>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-<p>...</p>
-
+<c:forEach items="${annonces}" var="element">
+<table>   
+	<tr>
+		<td>
+			<p> <b>${element.titre}</b></p>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+			<center><img src="images/${element.img}" width="180"/>
+			<img src="images/${element.img2}" width="180"/>
+			<img src="images/${element.img3}" width="180"/></center>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p> ${element.description }</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p> ${element.prix } frs</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p> ${element.vendeur} </p>
+		</td>
+	</tr>
+	<tr>
+		<td>		
+			<p> ${element.dateMEV}</p>
+		</td>
+	</tr>
+</table>
+</c:forEach>
 <%@ include file="finPage.jsp" %>
 </body>
 </html>

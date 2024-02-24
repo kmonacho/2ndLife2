@@ -1,6 +1,7 @@
 package com.secondLife.sql;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,6 +105,66 @@ public class Annonces {
 				}
 		}
 		return annonces;
+	}
+	
+public void creeAnnonce(Annonce annonce) {
+
+        String protocole =  "jdbc:mysql:" ;
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+       
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			con = DriverManager.getConnection(
+		                conString, nomConnexion, motDePasse); 
+			stmt = con.createStatement();
+			String sql = "INSERT INTO article (titre,description, adresse, vendeur, categorie, prix, dateMEV, img, img2, img3)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+			affiche("Annonce : "+ annonce.getTitre());
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, annonce.getTitre());
+            preparedStatement.setString(2, annonce.getDescription());
+            preparedStatement.setString(3, annonce.getAdresse());
+            preparedStatement.setString(4, annonce.getVendeur());
+            preparedStatement.setString(5, annonce.getCategorie());
+            preparedStatement.setDouble(6, annonce.getPrix());
+            preparedStatement.setString(7, annonce.getDateMEV());
+            preparedStatement.setString(8, annonce.getImg());
+            preparedStatement.setString(9, annonce.getImg2());
+            preparedStatement.setString(10, annonce.getImg3());
+            
+            int row = preparedStatement.executeUpdate();   
+            if (row > 0) {
+                affiche("Une annonce a ete enregistree dans la table article.");
+            }
+		}
+		catch (SQLException e) {
+			System.out.println("Probl�me dE SQL");
+			System.out.println ("Etat : " + e.getSQLState());
+			System.out.println ("Message : " + e.getErrorCode());
+			System.out.println ("Erreur code fourni : "+ e.getErrorCode());
+			e.printStackTrace();
+		}
+		finally {
+			if (rs != null) 
+				try {
+					rs.close();
+					stmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
 	}
 
 	private void affiche(String string) {

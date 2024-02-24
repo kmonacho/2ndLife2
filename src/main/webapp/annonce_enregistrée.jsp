@@ -33,17 +33,10 @@ body {
     </head>
 <body>
 <%@ include file="menu.jsp" %>
-<h1>Accueil</h1>
-<div class="contener">
-	<c:forEach items="${articles}" var="element">
-		<div class="box">
-			<p> <b>${element.titre}</b></p>
-			<center><img src="images/${element.img}" width="180"/></center>
-			<p> ${element.prix } frs</p>
-			<p> ${element.dateMEV}</p>
-		</div>
-	</c:forEach>
-</div>	
+<h1>Inscription</h1>
+<p>
+Votre annonce a bien été enregistée !
+</p>
 <%@ include file="finPage.jsp" %>
 </body>
 </html>

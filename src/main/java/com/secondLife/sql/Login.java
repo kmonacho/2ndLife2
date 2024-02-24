@@ -3,6 +3,7 @@ package com.secondLife.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import com.secondLife.beans.Utilisateur;
 public class Login {
 	Connection con = null;
 	Statement stmt = null;
+	PreparedStatement pstmt = null;
 	ResultSet results = null;
 	
 	public boolean execTestPass(String username, String password) {
@@ -94,10 +96,7 @@ public class Login {
 	        utilisateur.setEmail(email);
 		}
 		catch (SQLException e) {
-			System.out.println("Problème dE SQL");
-			System.out.println ("Etat : " + e.getSQLState());
-			System.out.println ("Message : " + e.getErrorCode());
-			System.out.println ("Erreur code fourni : "+ e.getErrorCode());
+			Login.printSQLError(e);
 			e.printStackTrace();
 		}
 		catch (Exception e) {
@@ -116,7 +115,66 @@ public class Login {
 		return utilisateur;
 	}
 	
-
+	public boolean creerUtilisateur(Utilisateur utilisateur) {
+		
+        String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de lâ€™hÃ´te de la base et port
+        String ip =  "localhost" ;  // dÃ©pend du contexte
+        String port =  "3306" ;  // port MySQL par dÃ©faut
+        String nomBase =  "2ndLife" ;  // dÃ©pend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dÃ©pend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dÃ©pend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "INSERT INTO login ('username', 'password','email', 'prenom', 'nom','adresse') VALUES (?, ?, ?, ?, ?, ?)";
+        	pstmt = con.prepareStatement(sql);
+        	affiche ("2");
+        	affiche(utilisateur.getUsername());
+        	pstmt.setString(1, utilisateur.getUsername());
+        	affiche(utilisateur.getPassword());
+        	pstmt.setString(2, utilisateur.getPassword());
+        	affiche(utilisateur.getEmail());
+        	pstmt.setString(3, utilisateur.getEmail());
+        	affiche(utilisateur.getPrenom());
+        	pstmt.setString(4, utilisateur.getPrenom());
+        	affiche(utilisateur.getNom());
+        	pstmt.setString(5, utilisateur.getNom());
+        	affiche(utilisateur.getAdresse());
+        	pstmt.setString(6, utilisateur.getAdresse());
+        	affiche ("3");
+        	int row = pstmt.executeUpdate();
+        	affiche ("4");
+        	if (row > 0) affiche("Un utilisateur a été entré dans la table des utilisateurs");
+        	return true;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return false;
+        }
+        catch (Exception e) { e.printStackTrace();return false;}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return false;
+				}
+		}
+		
+	}
+	
 	public static void printSQLError(SQLException e ) {
 		
 		System.out.println ("Etat : " + e.getSQLState());

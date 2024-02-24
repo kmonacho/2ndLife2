@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.secondLife.sql.Annonces;
+
 /**
  * Servlet implementation class Sport
  */
@@ -29,7 +31,9 @@ public class Sport extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		String conString =  "";
+		Annonces annonces = new Annonces(conString);
+		request.setAttribute("annonces", annonces.recupereAnnonceCategorie("sport"));
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 

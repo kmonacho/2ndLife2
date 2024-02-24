@@ -26,7 +26,7 @@ private static final String VUE = "/mode.jsp";
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String conString =  "";//"jdbc:ucanaccess://D://Java//Projets//2ndLife//src//main//webapp//2mdLife.mdb";
+		String conString =  "";
 		Annonces annonces = new Annonces(conString);
 		request.setAttribute("annonces", annonces.recupereAnnonceCategorie("mode"));
 		

@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Ménage et Maison 2ndLife</title>
+        <title>Catégorie Ordinateurs 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
 <style type="text/css">
 
@@ -13,8 +13,7 @@
     </head>
 <body>
 <%@ include file="menu.jsp" %>
-<h1>Catégorie Ménage et Maison</h1>
-<br>
+<h1>Catégorie Informatique</h1>
 <c:forEach items="${annonces}" var="element">
 <table>   
 	<tr>
@@ -23,12 +22,10 @@
 		</td>
 	</tr>	
 	<tr>
-		<td>
-			<center>
-				<img src="images/${element.img}" width="180"/>
-				<img src="images/${element.img2}" width="180"/>
-				<img src="images/${element.img3}" width="180"/>
-			</center>
+		<td>${element.img}<br>
+			<center><img src="images/${element.img}" width="180"/>
+			<img src="images/${element.img2}" width="180"/>
+			<img src="images/${element.img3}" width="180"/></center>
 		</td>
 	</tr>
 	<tr>
@@ -52,8 +49,6 @@
 		</td>
 	</tr>
 </table>
-<p>
-</p>
 </c:forEach>
 <%@ include file="finPage.jsp" %>
 </body>

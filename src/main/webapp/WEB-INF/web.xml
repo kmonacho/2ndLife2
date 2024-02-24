@@ -58,12 +58,12 @@
   	<url-pattern>/vehicules</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>Ordinateurs</servlet-name>
-  	<servlet-class>com.secondLife.servlets.Ordinateurs</servlet-class>
+  	<servlet-name>Informatique</servlet-name>
+  	<servlet-class>com.secondLife.servlets.Informatique</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Ordinateurs</servlet-name>
-  	<url-pattern>/ordinateurs</url-pattern>
+  	<servlet-name>Informatique</servlet-name>
+  	<url-pattern>/informatique</url-pattern>
   </servlet-mapping>
   <servlet>
   	<servlet-name>Sport</servlet-name>
@@ -80,5 +80,13 @@
   <servlet-mapping>
   	<servlet-name>CreationUtilisateur</servlet-name>
   	<url-pattern>/creationUtilisateur</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>CreationAnnonce</servlet-name>
+  	<servlet-class>com.secondLife.servlets.CreationAnnonce</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CreationAnnonce</servlet-name>
+  	<url-pattern>/creationAnnonce</url-pattern>
   </servlet-mapping>
 </web-app>
