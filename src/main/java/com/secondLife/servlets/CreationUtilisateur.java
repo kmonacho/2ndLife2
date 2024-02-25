@@ -17,7 +17,7 @@ import com.secondLife.sql.Login;
 public class CreationUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/WEB-INF/creationUtilisateur.jsp";
-	private static final String VUE_OK = "WEB-INF/login.jsp";
+	private static final String VUE_OK = "/WEB-INF/login.jsp";
        
 
 	/**

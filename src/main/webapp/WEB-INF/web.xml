@@ -89,4 +89,12 @@
   	<servlet-name>CreationAnnonce</servlet-name>
   	<url-pattern>/creationAnnonce</url-pattern>
   </servlet-mapping>
+   <servlet>
+  	<servlet-name>Upload</servlet-name>
+  	<servlet-class>com.secondLife.servlets.Upload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Upload</servlet-name>
+  	<url-pattern>/upload</url-pattern>
+  </servlet-mapping>
 </web-app>

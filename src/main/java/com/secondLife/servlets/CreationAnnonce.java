@@ -49,6 +49,7 @@ public class CreationAnnonce extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String titre = request.getParameter("titre");
+		System.out.println("titre : "+ titre);
 		String description = request.getParameter("description");
 		String img = request.getParameter("img");
 		String img2 = request.getParameter("img2");
@@ -74,10 +75,11 @@ public class CreationAnnonce extends HttpServlet {
 		annonce.setPrix(prixD);
 		annonce.setDateMEV(new Date().toString());
 		
-		request.setAttribute("annonce", annonce);
+		
 		
 		Annonces a = new Annonces("");
 		a.creeAnnonce(annonce);
+		//request.setAttribute("annonce", annonce);
 		request.setAttribute("annonces", a.recupereAnnonceCategorie("informatique"));
 
 		this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);

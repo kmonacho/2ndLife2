@@ -135,7 +135,7 @@ public class Login {
         try {
         	affiche ("1");
         	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
-        	String sql = "INSERT INTO login ('username', 'password','email', 'prenom', 'nom','adresse') VALUES (?, ?, ?, ?, ?, ?)";
+        	String sql = "INSERT INTO login (username, password, email, prenom, nom, adresse) VALUES (?, ?, ?, ?, ?, ?)";
         	pstmt = con.prepareStatement(sql);
         	affiche ("2");
         	affiche(utilisateur.getUsername());

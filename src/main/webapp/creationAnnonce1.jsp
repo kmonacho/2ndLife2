@@ -36,7 +36,7 @@ body {
 <h1>Nouvelle annonce</h1>
 <body>
 <br/>
-<form id="form1" name="form1" method="post" action="creationAnnonce" enctype="multipart/form-data">
+<form id="form1" name="form1" method="post" action="creationAnnonce">
   <fieldset>
                 <legend>Annonce</legend>
                 <p>
@@ -65,15 +65,15 @@ body {
               	<br />
              	 <select name="categorie">
  				 <option value="mode">Mode</option>
-  				 <option value="informaitque">informatique</option>
+  				 <option value="informatique">informatique</option>
  				 <option value="menageEtMaison">Menage et Maison</option>
-  				 <option value="vehicule">Vehicules</option>
+  				 <option value="vehicule">Véhicules</option>
  				 <option value="sport">Sport</option>
 				</select>
               	</p>
               	<p>
                 <label for="prix">Prix <span class="requis">*</span></label>
-                <input type="text" id="prix" name="prix" value="" cols="60" rows="10"/>
+                <input type="text" id="prix" name="prix" value="50" cols="60" rows="10"/>
                 </p>
                 <p>
 				Information sur le vendeur :

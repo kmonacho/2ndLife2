@@ -31,7 +31,7 @@ public class Vehicules extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Annonces annonces = new Annonces("");
-		request.setAttribute("annonces", annonces.recupereAnnonceCategorie("vehicules"));
+		request.setAttribute("annonces", annonces.recupereAnnonceCategorie("vehicule"));
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 

@@ -5,7 +5,16 @@ import java.util.Date;
 public class Annonce {
 	private String img, img2,img3, titre, description, adresse, vendeur, categorie;
 	private double prix;
+	private int id;
 	private String dateMEV;
+	
+	public int getID() {
+		return id;
+	}
+	
+	public void setID(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the img
 	 */

@@ -58,7 +58,7 @@ public class Annonces {
 			while(rs.next()) {
 				
 				String categorie2 = rs.getString("categorie");
-				
+				int id = rs.getInt("id");
 				String titre = rs.getString("titre");
 				String description = rs.getString("description");
 				String adresse = rs.getString("adresse");
@@ -73,6 +73,7 @@ public class Annonces {
 				
 				
 				Annonce  annonce = new Annonce();
+				annonce.setID(id);
 				annonce.setTitre(titre);
 				annonce.setDescription(description);
 				annonce.setAdresse(adresse);
@@ -116,7 +117,7 @@ public void creeAnnonce(Annonce annonce) {
         String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
         String nomConnexion =  "root" ;  // dépend du contexte
         String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
-        
+        int id=0;
        
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -127,21 +128,32 @@ public void creeAnnonce(Annonce annonce) {
 			con = DriverManager.getConnection(
 		                conString, nomConnexion, motDePasse); 
 			stmt = con.createStatement();
-			String sql = "INSERT INTO article (titre,description, adresse, vendeur, categorie, prix, dateMEV, img, img2, img3)"
-					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "SELECT id FROM article ORDER BY id";
+			rs = stmt.executeQuery(sql);
+
+			while(rs.next()) {		
+				id = rs.getInt("id");
+			}
+			id++;	
+			annonce.setID(id);
+			
+
+			sql = "INSERT INTO article (id, titre,description, adresse, vendeur, categorie, prix, dateMEV, img, img2, img3)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
 			affiche("Annonce : "+ annonce.getTitre());
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, annonce.getTitre());
-            preparedStatement.setString(2, annonce.getDescription());
-            preparedStatement.setString(3, annonce.getAdresse());
-            preparedStatement.setString(4, annonce.getVendeur());
-            preparedStatement.setString(5, annonce.getCategorie());
-            preparedStatement.setDouble(6, annonce.getPrix());
-            preparedStatement.setString(7, annonce.getDateMEV());
-            preparedStatement.setString(8, annonce.getImg());
-            preparedStatement.setString(9, annonce.getImg2());
-            preparedStatement.setString(10, annonce.getImg3());
+			preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, annonce.getTitre());
+            preparedStatement.setString(3, annonce.getDescription());
+            preparedStatement.setString(4, annonce.getAdresse());
+            preparedStatement.setString(5, annonce.getVendeur());
+            preparedStatement.setString(6, annonce.getCategorie());
+            preparedStatement.setDouble(7, annonce.getPrix());
+            preparedStatement.setString(8, annonce.getDateMEV());
+            preparedStatement.setString(9, annonce.getImg());
+            preparedStatement.setString(10, annonce.getImg2());
+            preparedStatement.setString(11, annonce.getImg3());
             
             int row = preparedStatement.executeUpdate();   
             if (row > 0) {

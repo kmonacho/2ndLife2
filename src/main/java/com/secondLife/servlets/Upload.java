@@ -22,7 +22,7 @@ import com.secondLife.beans.Annonce;
  * Notre serlvet permettant de récupérer les fichiers côté serveur.
  * Elle répondra à l'URL /upload dans l'application Web considérée.
  */
-@WebServlet( urlPatterns = "/upload" )
+
 @MultipartConfig( fileSizeThreshold = 1024 * 1024, 
                   maxFileSize = 1024 * 1024 * 5,
                   maxRequestSize = 1024 * 1024 * 5 * 5 )
