@@ -13,9 +13,9 @@
 	font-weight:bold;
 	text-decoration: none;
 	
-	color:#1ac21a
+	color: #1ac21a
 	}
-	body, p, legend, label, input {
+	body, p {
     	font: normal 8pt verdana, helvetica, sans-serif;
 	}
 	.logo {
@@ -37,7 +37,7 @@
   <tr>
     <td width="18%">&nbsp;</td>
     <td width="77%"><a href="mode" tabindex="4" title="Article de mode">Mode</a> |
-     <a href="vehicules" tabindex="2" title="Véhicules">Vehicules</a>  
+     <a href="vehicule" tabindex="2" title="Véhicules">Vehicules</a>  
      | <a href="menageEtMaison" tabindex="3" title="Ménages & Maison">Menage & Maison</a> 
      | <a href="sport" tabindex="4" title="Sport">Sport</a> 
      | <a href="informatique" tabindex="6" title="informatique">informatique</a></td>

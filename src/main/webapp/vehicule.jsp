@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Catégorie sport 2ndLife</title>
+        <title>Catégorie véhicules 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
 <style type="text/css">
 
@@ -13,12 +13,12 @@
     </head>
 <body>
 <%@ include file="menu.jsp" %>
-<h1>Catégorie Sport</h1>
+<h1>Catégorie Véhicules</h1>
 <c:forEach items="${annonces}" var="element">
 <table>   
 	<tr>
 		<td>
-			<p><a id="${element.id}"><b>${element.titre}</b></p>
+			<p><a id="${element.id}"></a><b>${element.titre}</b></p>
 		</td>
 	</tr>	
 	<tr>
@@ -49,6 +49,36 @@
 		</td>
 	</tr>
 </table>
+<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
 </c:forEach>
 <%@ include file="finPage.jsp" %>
 </body>

@@ -6,10 +6,16 @@
         <meta charset="utf-8" />
         <title>Connexion 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
-<style type="text/css">
-
-
-</style>
+        <style type="text/css">
+        fieldset {
+    		padding: 10px;
+    		border: 1px #1ac21a solid;
+		}
+		legend {
+   			font-weight: bold;
+    		color: #0000ff
+		}
+        </style>
     </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -19,7 +25,7 @@
                 <legend>Connexion</legend>
                 <p>Vous pouvez vous connecter via ce formulaire.</p>
 
-                <label for="nom">Adresse email <span class="requis">*</span></label>
+                <label for="nom">Nom d'utilisateur <span class="requis">*</span></label>
                 <input type="text" id="username" name="username" value="" size="20" maxlength="60" />
         
                 <br />

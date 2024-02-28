@@ -15,7 +15,7 @@ import com.secondLife.sql.Annonces;
 //@WebServlet("/vehicules")
 public class Vehicules extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VUE = "/vehicules.jsp";
+	private static final String VUE = "/vehicule.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()

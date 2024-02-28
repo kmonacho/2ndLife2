@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.secondLife.sql.Login;
 import com.secondLife.beans.Utilisateur;
@@ -47,9 +48,13 @@ public class Connexion extends HttpServlet {
 		
 		Login login = new Login();
 		if (login.execTestPass(username, password)) {
+			
+			
 			System.out.println("Password match");
 			Utilisateur utilisateur = login.recupereUtilisateur(password);
-			request.setAttribute("utilisateur", utilisateur);
+			HttpSession session = request.getSession();
+			session.setAttribute("utilisateur", utilisateur);
+			//request.setAttribute("utilisateur", utilisateur);
 			this.getServletContext().getRequestDispatcher(VUE_LOGIN).forward(request, response);
 		}
 		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

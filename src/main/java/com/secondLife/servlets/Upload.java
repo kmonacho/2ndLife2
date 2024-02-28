@@ -35,7 +35,7 @@ public class Upload extends HttpServlet {
      */
     public static final String IMAGES_FOLDER = "/images";
     public static final String VUE = "/upload.jsp";
-    public static final String VUE_OK = "/creationAnnonce1.jsp";
+    public static final String VUE_OK = "/WEB-INF/creationAnnonce1.jsp";
         
     public String uploadPath="C:\\Users\\Admin\\Documents\\Projets\\2ndLife\\src\\main\\webapp\\images";
     

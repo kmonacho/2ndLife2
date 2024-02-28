@@ -19,7 +19,7 @@
 <table>   
 	<tr>
 		<td>
-			<p> <b>${element.titre}</b></p>
+			<p><a id="${element.id}"></a><b>${element.titre}</b></p>
 		</td>
 	</tr>	
 	<tr>
@@ -54,6 +54,36 @@
 </table>
 <p>
 </p>
+<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
 </c:forEach>
 <%@ include file="finPage.jsp" %>
 </body>

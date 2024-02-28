@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Catégorie Ordinateurs 2ndLife</title>
+        <title>Catégorie Informatique 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
 <style type="text/css">
 
@@ -18,11 +18,11 @@
 <table>   
 	<tr>
 		<td>
-			<p> <b>${element.titre}</b></p>
+			<a id="${element.id}"></a><p> <b>${element.titre}</b></p>
 		</td>
 	</tr>	
 	<tr>
-		<td>${element.img}<br>
+		<td> 
 			<center><img src="images/${element.img}" width="180"/>
 			<img src="images/${element.img2}" width="180"/>
 			<img src="images/${element.img3}" width="180"/></center>
@@ -49,6 +49,36 @@
 		</td>
 	</tr>
 </table>
+<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
+		<p>
+		...
+		</p>
 </c:forEach>
 <%@ include file="finPage.jsp" %>
 </body>

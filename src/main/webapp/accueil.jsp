@@ -35,13 +35,14 @@ body {
 <%@ include file="menu.jsp" %>
 <h1>Accueil</h1>
 <div class="contener">
-	<c:forEach items="${articles}" var="element">
+	<c:forEach items="${annonces}" var="element">
 		<div class="box">
 			<p> <b>${element.titre}</b></p>
 			<center><img src="images/${element.img}" width="180"/></center>
 			<p> ${element.prix } frs</p>
 			<p> ${element.dateMEV}</p>
-		</div>
+			<p> <a href="${element.categorie }#${element.id }">Détails</a></p>
+		</div>	
 	</c:forEach>
 </div>	
 <%@ include file="finPage.jsp" %>

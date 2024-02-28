@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jdt.internal.compiler.batch.FileSystem;
 
-import com.secondLife.sql.Articles;
+import com.secondLife.sql.Annonces;
+
 
 /**
  * Servlet implementation class Accueil
@@ -50,15 +51,10 @@ public class Accueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String conString =  "jdbc:ucanaccess://D://Java//Projets//2ndLife//src//main//webapp//2mdLife.mdb";
-		Articles articles = new Articles(conString);
-		request.setAttribute("articles", articles.recupereArticles());
-		String path2Projet = System.getProperty("user.dir");
-		Path path = FileSystems.getDefault().getPath("");
-		path2Projet = path.toAbsolutePath().toString();
-		path2Projet = request.getContextPath().toString();
-		path2Projet = request.getServletPath();
-		affiche("repertoire du projet "+path2Projet);
+		//Articles articles = new Articles("");
+		//request.setAttribute("articles", articles.recupereArticles());
+		Annonces annonces = new Annonces("");
+		request.setAttribute("annonces", annonces.recupereAnnonces());
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	
 	}

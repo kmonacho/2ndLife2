@@ -20,7 +20,7 @@ body {
 <table>   
 	<tr>
 		<td>
-			<p> <b>${element.titre}</b></p>
+			<p><a id="${element.id}"></a><b>${element.titre}</b></p>
 		</td>
 	</tr>	
 	<tr>

@@ -20,8 +20,8 @@ import com.secondLife.sql.Annonces;
 
 public class CreationAnnonce extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String VUE = "/upload.jsp";
-    private static final String VUE_OK = "/informatique";
+    private static final String VUE = "/WEB-INF/upload.jsp";
+    private static final String VUE_OK = "/accueil";
   
     
     /**

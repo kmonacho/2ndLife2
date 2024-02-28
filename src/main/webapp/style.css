@@ -28,7 +28,15 @@ body {
 
 	background-color:#EEEEEE
 }
+fieldset {
+    padding: 10px;
+    border: 1px #1ac21a solid;
+}
 
+legend {
+    font-weight: bold;
+    color: #1ac21a
+}
    
 
 /* Forms --------------------------------------------------------------------------------------- */

@@ -8,11 +8,11 @@ public class Annonce {
 	private int id;
 	private String dateMEV;
 	
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setID(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	/**
@@ -135,6 +135,8 @@ public class Annonce {
 	public void setDateMEV(String dateMEV) {
 		this.dateMEV = dateMEV;
 	}
+
+	
 	
 	
 }

@@ -12,9 +12,9 @@
 </style>
     </head>
 <body>
-<%@ include file="\..\menu.jsp" %>
+<%@ include file="../menu.jsp" %>
 <h1>Profil utilisateur</h1>
-<p>Bienvenu ${utilisateur.prenom} ${utilisateur.nom}</p>
+<p>Bienvenu ${sessionScope.utilisateur.prenom} ${sessionScope.utilisateur.nom}</p>
 <p>...</p>
 <p>...</p>
 <p>...</p>
@@ -23,6 +23,6 @@
 <p>...</p>
 <p>...</p>
 
-<%@ include file="\..\finPage.jsp" %>
+<%@ include file="../finPage.jsp" %>
 </body>
 </html>
