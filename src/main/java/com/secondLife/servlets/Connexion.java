@@ -18,7 +18,7 @@ public class Connexion extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/connexion.jsp";
-	private static final String VUE_LOGIN = "/WEB-INF/login.jsp";
+	private static final String VUE_LOGIN = "/userDataChange";
        
     /**
      * @see HttpServlet#HttpServlet()

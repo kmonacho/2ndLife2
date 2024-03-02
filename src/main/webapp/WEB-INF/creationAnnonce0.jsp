@@ -17,7 +17,7 @@
 <%@ include file="../menu.jsp" %>
 <h1>Marche à suivre pour créer une annonce</h1>
 <p></p>
-<form action="upload" method="get" name="upload">
+<form action="upload" method="" name="upload">
 <fieldset>
                 <legend>Annonce</legend>
                 <p> Vueillez d'abord choisir les 3 images que vous souhaitez joindre à votre annonce, puis remplir les différentes informations sur l'annonce (titre, description, prix, ...).

@@ -87,13 +87,17 @@ public class Login {
 	       
 			// recupere le schema du resultat (nom des colonnes, type, ...)
 	        boolean tuple = results.next();
+	        String username = results.getString("username");
 	        String prenom = results.getString("prenom");
 	        String nom = results.getString("nom");
 	        String email = results.getString("email");
+	        String adresse = results.getString("adresse");
 	        
+	        utilisateur.setUsername(username);
 	        utilisateur.setPrenom(prenom);
 	        utilisateur.setNom(nom);   
 	        utilisateur.setEmail(email);
+	        utilisateur.setAdresse(adresse);
 		}
 		catch (SQLException e) {
 			Login.printSQLError(e);
@@ -175,6 +179,8 @@ public class Login {
 		
 	}
 	
+
+	
 	public static void printSQLError(SQLException e ) {
 		
 		System.out.println ("Etat : " + e.getSQLState());
@@ -189,4 +195,320 @@ public class Login {
 		// TODO Auto-generated method stub
 		System.out.println(string);
 	}
+
+	/*public String modifieUsernameUtilisateur(String oldUsername, String newUsername) {
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET username = '"+newUsername+"' WHERE username = '"+oldUsername +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+		
+	}*/
+
+	public String modifieUsernameUtilisateur(String newUsername, String oldUsername) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET username = '"+newUsername+"' WHERE username = '"+oldUsername +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+	
+	public String modifiePrenomUtilisateur(String nouveauPrenom, String username) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET prenom = '"+nouveauPrenom+"' WHERE username = '"+username +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+
+	public String modifieNomUtilisateur(String nouveauNom, String username) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET nom = '"+nouveauNom+"' WHERE username = '"+username +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+	
+	public String modifieEmailUtilisateur(String nouvelEmail, String username) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET email = '"+nouvelEmail+"' WHERE username = '"+username +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+	public String modifieAdresseUtilisateur(String nouvelleAdr, String username) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET adresse = '"+nouvelleAdr+"' WHERE username = '"+username +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+	
+	public String modifiePasswordUtilisateur(String newPassword, String username) {
+		// TODO Auto-generated method stub
+		String protocole =  "jdbc:mysql:" ;
+        // Adresse IP de l’hôte de la base et port
+        String ip =  "localhost" ;  // dépend du contexte
+        String port =  "3306" ;  // port MySQL par défaut
+        String nomBase =  "2ndLife" ;  // dépend du contexte
+        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
+        String nomConnexion =  "root" ;  // dépend du contexte
+        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+        
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "-1";
+		}
+        
+        try {
+        	affiche ("1");
+        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+        	String sql = "UPDATE login SET password = '"+newPassword+"' WHERE username = '"+username +"'";
+        	affiche(sql);
+        	stmt = con.createStatement();
+			int resultCode = stmt.executeUpdate(sql);
+			return "OK <" + resultCode + "> "+sql;
+        }
+        catch (SQLException e) {
+        	Login.printSQLError(e);
+        	e.printStackTrace();
+        	return "-1";
+        }
+        catch (Exception e) { e.printStackTrace();return "-1";}
+        finally {
+			if (pstmt != null) 
+				try {
+					pstmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+					return "-1";
+				}
+		}
+	}
+	
+	
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style>
+form label {
+    width: 200px;
+    margin: 3px 0px 0px 0px;
+}
+
+form legend }
+	margin: 3px 3px 0px 0px
+    border: 1px #000 solid;
+}
+form input {
+    margin: 3px 3px 0px 0px;
+    border: 1px #999 solid;
+}
+.style1 {color: #FFFFFF}
+</style>
+</head>
+<body>
+<h1>Bienvenu dans votre espace membre</h1>
+<table width="100%" border="0">
+  <tr>
+    <td width="25%" height="28" align="left" valign="middle" bgcolor="#000000"><span class="style1">Donn&eacute;es du compte utilisateur</span></td>
+    <td width="23%" bgcolor="#000000"><span class="style1"></span></td>
+    <td width="52%" bgcolor="#000000"><span class="style1"></span></td>
+  </tr>
+  <tr><form action="../userDataChange" method="post">
+    <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Nom d'utilisateur
+        <input name="d2cusername" type="hidden" value="username" />
+    </span></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="username" type="text"  value="val" maxlength="50" /></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer3" type="submit" value="Changer" /></td>
+  </form></tr>
+  <tr><form action="../userDataChange" method="post">
+    <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">
+      <label>Prénom
+      <input name="d2cvorname" type="hidden" id="d2cvorname" value="prenom" />
+      </label>
+    </span></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="prenom2"  type="text"  value="val" maxlength="50" /></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer4" type="submit" value="Changer" /></td>
+  </form></tr>
+  <tr><form action="../userDataChange" method="post">
+    <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Nom
+        <input name="d2cname" type="hidden" id="d2cname" value="nom" />
+    </span></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="prenom" type="text"  value="val" maxlength="50" /></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer5" type="submit" value="Changer" /></td>
+  </form></tr>
+  <tr><form action="../userDataChange" method="post">
+    <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Email
+        <input name="d2cemail" type="hidden" id="d2cemail" value="email" />
+    </span></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="email2"  type="text"  value="val" maxlength="50" /></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer6" type="submit" value="Changer" /></td>
+  </form></tr>
+   <tr><form action="../userDataChange" method="post">
+    <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Adresse
+        <input name="d2cadresse" type="hidden" id="d2cadresse" value="adresse" />
+    </span></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><textarea name="email2" rows="2">val</textarea></td>
+    <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer6" type="submit" value="Changer" /></td>
+  </form></tr>
+</table>
+
+<p>&nbsp;</p>
+
+  <form action="../userDataChange" method="post">
+  <table width="100%" border="0">
+    <tr>
+      <td width="25%" height="29" align="left" valign="middle" bgcolor="#000000"><span class="style1">Changer de mot de passe</span></td>
+      <td width="23%" bgcolor="#000000"><span class="style1"></span></td>
+      <td width="52%" bgcolor="#000000"><span class="style1"></span></td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Mot de passe</span></td>
+      <td align="left" valign="top" bgcolor="#CCCCCC"><input name="password1" type="password" /></td>
+      <td bgcolor="#CCCCCC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Mot de passe
+        <input name="dd2cpassword" type="hidden" id="dd2cpassword" value="password"  />
+      </span></td>
+      <td align="left" valign="top" bgcolor="#CCCCCC"><input name="password2" type="password" /></td>
+      <td align="left" valign="top" bgcolor="#CCCCCC"><input name="Changer" type="button" value="Changer" /></td>
+    </tr>
+	<tr>
+      <td colspan="3" align="left" valign="top">Le mot de passe doit :<br />
+	  1) comporter 8 charactères <br />     
+	  2) contenir au minimum 1 majuscule<br />
+	  3) contenir au minimum 1 chiffre<br />
+	  4) contenir au minimum 1 caractère sp&eacute;cial</td>
+    </tr>
+  </table>
+</form>
+  </p> 
+ <a href="WEB-INF/creationAnnonce0.jsp">Passer une annonce</a></p>
+  </form>
+
+<p>&nbsp; </p>
+</body>
+</html>

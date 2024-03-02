@@ -8,19 +8,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.secondLife.beans.Utilisateur;
 import com.secondLife.sql.Login;
 
 /**
- * Servlet implementation class CreationUtilisateur
+ * Servlet implementation class UserDataChange
  */
-
-public class CreationUtilisateur extends HttpServlet {
+//@WebServlet("/UserDataChange")
+public class UserDataChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VUE = "/creationUtilisateur.jsp";
-	private static final String VUE_OK = "/WEB-INF/login.jsp";
+	private static final String VUE = "/WEB-INF/login.jsp"; 
+	private static final String PASSWORD_CHANGED = "/WEB-INF/passConfirmation.jsp";
        
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public UserDataChange() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,38 +43,59 @@ public class CreationUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password1 = request.getParameter("password1");
-		String password2 = request.getParameter("password2");
-		
-		//vérifier si les deux mots de passes sont égaux, qu'ils contiennent bien 1 majuscule, un chiffre et un caractère accentué ai moins
-		ArrayList<String> errors = passwordAccept(password1, password2);
-		
-		String prenom = request.getParameter("prenom");
-		String nom = request.getParameter("nom");
-		String eamil = request.getParameter("email");
-		String adresse = request.getParameter("adresse");
-		affiche (username);
-		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setUsername(username);
-		utilisateur.setPassword(password2);
-		utilisateur.setPrenom(prenom);
-		utilisateur.setNom(nom);
-		utilisateur.setEmail(eamil);
-		utilisateur.setAdresse(adresse);
-		
+		String paramAChanger = request.getParameter("data2Change");
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
+		affiche ("username utilisateur : "+utilisateur.getUsername());
 		Login login = new Login();
-		boolean userRecord = login.creerUtilisateur(utilisateur);
-		
-		System.out.println("errors : " +errors.toString());
-		if (errors.isEmpty() && userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
-		else {
-			request.setAttribute("errors", errors);
-			if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
-			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		if (paramAChanger == null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		switch(paramAChanger) {
+			case "username" : 
+				String username = request.getParameter("username");
+				System.out.println(login.modifieUsernameUtilisateur(username, utilisateur.getUsername()));
+				utilisateur.setUsername(username);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+				break;
+			case "prenom" :
+				String prenom = request.getParameter("prenom");
+				affiche(login.modifiePrenomUtilisateur(prenom, utilisateur.getUsername()));
+				utilisateur.setPrenom(prenom);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+				break;
+			case "nom" :
+				String nom = request.getParameter("nom");
+				affiche(login.modifieNomUtilisateur(nom, utilisateur.getUsername()));
+				utilisateur.setNom(nom);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+				break;
+			case "email" :
+				String email = request.getParameter("email");
+				affiche(login.modifieEmailUtilisateur(email, utilisateur.getUsername()));
+				utilisateur.setEmail(email);
+				break;
+				
+			case "adresse" :
+				String adresse = request.getParameter("adresse");
+				affiche(login.modifieAdresseUtilisateur(adresse, utilisateur.getUsername()));
+				utilisateur.setAdresse(adresse);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+				break;
+			case "password":
+				String password1 = request.getParameter("password1");
+				String password2 = request.getParameter("password2");
+				affiche("passwords : "+password1 + " / "+password2);
+				//vérifier si les deux mots de passes sont égaux, qu'ils contiennent bien 1 majuscule, un chiffre et un caractère accentué ai moins
+				ArrayList<String> errors = passwordAccept(password1, password2);
+				affiche(login.modifiePasswordUtilisateur(password2, utilisateur.getUsername()));
+				if (errors.isEmpty()) this.getServletContext().getRequestDispatcher(PASSWORD_CHANGED).forward(request, response);
+				else {
+					request.setAttribute("errors", errors);
+					this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+				}
+			
 		}
 	}
-
+	
 	private ArrayList<String> passwordAccept(String password1, String password2) {
 		// TODO Auto-generated method stub
 		ArrayList<String> errors = new ArrayList<String>();
@@ -81,6 +110,7 @@ public class CreationUtilisateur extends HttpServlet {
 		if (!password1.equals(null) && !password2.equals(null)) {
 					if (password1.equals(password2)) {
 						passEgaux = true;
+						affiche("pass égaux");
 						if (password1.length() >= 8) {
 							minHuit = true;
 						}
@@ -150,9 +180,9 @@ public class CreationUtilisateur extends HttpServlet {
 		return errors;
 	}
 
-	private void affiche(String str) {
+	private void affiche(String string) {
 		// TODO Auto-generated method stub
-		System.out.println(str);
+		System.out.println(string);
 	}
 
 }

@@ -57,7 +57,8 @@ body {
 <form id="form1" name="form1" method="post" action="upload" enctype="multipart/form-data">
   <fieldset>
                 <legend> Image de l'annonce</legend>
-               
+                <p> Vueillez d'abord choisir les 3 images que vous souhaitez joindre à votre annonce, puis remplir les différentes informations sur l'annonce (titre, description, prix, ...).
+</p>
                 <p>
 				 Première image : <input type="file" name="multiPartServlet" accept="image/*" multiple
                    onchange="readFilesAndDisplayPreview(this.files);" /><br>

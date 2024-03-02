@@ -97,6 +97,22 @@
   	<servlet-name>Upload</servlet-name>
   	<url-pattern>/upload</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>EspaceMembre</servlet-name>
+  	<servlet-class>com.secondLife.servlets.EspaceMembre</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EspaceMembre</servlet-name>
+  	<url-pattern>/espaceMembre</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>UserDataChange</servlet-name>
+  	<servlet-class>com.secondLife.servlets.UserDataChange</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserDataChange</servlet-name>
+  	<url-pattern>/userDataChange</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

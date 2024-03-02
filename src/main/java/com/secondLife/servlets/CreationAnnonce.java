@@ -80,8 +80,8 @@ public class CreationAnnonce extends HttpServlet {
 		Annonces a = new Annonces("");
 		a.creeAnnonce(annonce);
 		//request.setAttribute("annonce", annonce);
-		request.setAttribute("annonces", a.recupereAnnonceCategorie("informatique"));
-
+		//request.setAttribute("annonces", a.recupereAnnonceCategorie("informatique"));
+		request.setAttribute("annonces", a.recupereAnnonces());
 		this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
 
 	}
