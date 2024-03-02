@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8"  import="javax.servlet.http.HttpSession" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -24,12 +24,15 @@
     </style>
     </head>
 <body>
+<% 
+HttpSession s = request.getSession();
+if (s.getAttribute("utilisateur")!= null) out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"deconnexion\">Se deconncecter</a></div> ");
+else out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"connexion\">Se conncecter</a></div>");
+%>
 <table width="100%" border="0">
   <tr>
     <td width="18%"><h1><a href="accueil" title="Mettre en Vente" class="logo"><img src="images/logo.png" alt="Logi du site de vente de second main 2ndLife" width="200" height="72"></a></h1></td>
-    <td width="62%"></td>
-    <td width="10%"><a href="vente" title="Mettre en Vente">Mettre en vente</a></td>
-    <td width="10%"><a href="connexion" title="Se connecter">Se Connecter</a></td>
+    <td> </td>
   </tr>
 </table>
 							   

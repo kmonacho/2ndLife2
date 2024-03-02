@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.secondLife.beans.Annonce;
+import com.secondLife.beans.Utilisateur;
 import com.secondLife.sql.Annonces;
 
 /**
@@ -39,7 +40,9 @@ public class CreationAnnonce extends HttpServlet {
 		// TODO Auto-generated method stub
 		//String fileName = (String)request.getAttribute("fileName");
 		//request.setAttribute("fileName", fileName);
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+		if (utilisateur != null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
 	}
 
 	/**

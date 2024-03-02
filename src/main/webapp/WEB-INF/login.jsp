@@ -26,7 +26,13 @@ form input {
 
 </style>
     </head>
+    <!-- 
+    
+    -->
 <body>
+
+
+
 <%@ include file="../menu.jsp" %>
 <h1>Bienvenu dans votre espace membre</h1>
 <table width="100%" border="0">

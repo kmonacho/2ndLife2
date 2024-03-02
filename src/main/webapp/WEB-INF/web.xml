@@ -113,6 +113,14 @@
   	<servlet-name>UserDataChange</servlet-name>
   	<url-pattern>/userDataChange</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Deconnexion</servlet-name>
+  	<servlet-class>com.secondLife.servlets.Deconnexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Deconnexion</servlet-name>
+  	<url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 
 import com.secondLife.sql.Articles;
 import com.secondLife.beans.Annonce;
+import com.secondLife.beans.Utilisateur;
 
 
 /*
@@ -36,6 +37,7 @@ public class Upload extends HttpServlet {
     public static final String IMAGES_FOLDER = "/images";
     public static final String VUE = "/WEB-INF/upload.jsp";
     public static final String VUE_OK = "/WEB-INF/creationAnnonce1.jsp";
+    public static final String VUE_OUT_SESSION = "/accueil";
         
     public String uploadPath="C:\\Users\\Admin\\Documents\\Projets\\2ndLife\\src\\main\\webapp\\images";
     
@@ -49,9 +51,9 @@ public class Upload extends HttpServlet {
         if ( ! uploadDir.exists() ) uploadDir.mkdir();
     }*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-	
+    	Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+    	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
     /*
      * Récupération et sauvegarde du contenu de chaque image.

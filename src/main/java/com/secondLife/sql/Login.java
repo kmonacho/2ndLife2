@@ -60,7 +60,7 @@ public class Login {
 		}
 	}
 	
-	public Utilisateur recupereUtilisateur( String password) {
+	public Utilisateur recupereUtilisateur( String username) {
 		String sqlText="-1";
 		Utilisateur utilisateur = new Utilisateur();
 		try {
@@ -80,20 +80,20 @@ public class Login {
 	        stmt = con.createStatement();    
 	        affiche ("stmt fait ");
 	        //affiche(execDML("USE xlogin"));
-	        sqlText = "SELECT * FROM login WHERE password = '"+password+"'";
+	        sqlText = "SELECT * FROM login WHERE username = '"+username+"'";
 	        affiche(sqlText);
 			
 	        results = stmt.executeQuery(sqlText);
 	       
 			// recupere le schema du resultat (nom des colonnes, type, ...)
 	        boolean tuple = results.next();
-	        String username = results.getString("username");
+	        String username2 = results.getString("username");
 	        String prenom = results.getString("prenom");
 	        String nom = results.getString("nom");
 	        String email = results.getString("email");
 	        String adresse = results.getString("adresse");
 	        
-	        utilisateur.setUsername(username);
+	        utilisateur.setUsername(username2);
 	        utilisateur.setPrenom(prenom);
 	        utilisateur.setNom(nom);   
 	        utilisateur.setEmail(email);
@@ -154,9 +154,7 @@ public class Login {
         	pstmt.setString(5, utilisateur.getNom());
         	affiche(utilisateur.getAdresse());
         	pstmt.setString(6, utilisateur.getAdresse());
-        	affiche ("3");
         	int row = pstmt.executeUpdate();
-        	affiche ("4");
         	if (row > 0) affiche("Un utilisateur a été entré dans la table des utilisateurs");
         	return true;
         }

@@ -21,7 +21,7 @@ public class UserDataChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/WEB-INF/login.jsp"; 
 	private static final String PASSWORD_CHANGED = "/WEB-INF/passConfirmation.jsp";
-       
+	 private static final String VUE_OUT_SESSION = "/accueil";   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,7 +35,10 @@ public class UserDataChange extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+    	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
 	}
 
 	/**

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.secondLife.beans.Utilisateur;
 import com.secondLife.sql.Login;
@@ -35,6 +36,7 @@ public class CreationUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		boolean userRecord = false;
 		String username = request.getParameter("username");
 		String password1 = request.getParameter("password1");
 		String password2 = request.getParameter("password2");
@@ -44,27 +46,35 @@ public class CreationUtilisateur extends HttpServlet {
 		
 		String prenom = request.getParameter("prenom");
 		String nom = request.getParameter("nom");
-		String eamil = request.getParameter("email");
+		String email = request.getParameter("email");
 		String adresse = request.getParameter("adresse");
 		affiche (username);
-		Utilisateur utilisateur = new Utilisateur();
-		utilisateur.setUsername(username);
-		utilisateur.setPassword(password2);
-		utilisateur.setPrenom(prenom);
-		utilisateur.setNom(nom);
-		utilisateur.setEmail(eamil);
-		utilisateur.setAdresse(adresse);
 		
-		Login login = new Login();
-		boolean userRecord = login.creerUtilisateur(utilisateur);
+		if (errors.isEmpty()){
+			Utilisateur utilisateur = new Utilisateur();
 		
-		System.out.println("errors : " +errors.toString());
-		if (errors.isEmpty() && userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
-		else {
+			utilisateur.setUsername(username);
+			utilisateur.setPassword(password2);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setNom(nom);
+			utilisateur.setEmail(email);
+			utilisateur.setAdresse(adresse);
+		
+			Login login = new Login();
+			userRecord = login.creerUtilisateur(utilisateur);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("utilisateur", utilisateur);
+			if (userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+			else {
+				if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
+			}
+		}else {
+			System.out.println("errors : " +errors.toString());
 			request.setAttribute("errors", errors);
-			if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
+		
 	}
 
 	private ArrayList<String> passwordAccept(String password1, String password2) {

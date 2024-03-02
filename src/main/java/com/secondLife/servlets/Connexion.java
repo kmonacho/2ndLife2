@@ -51,7 +51,7 @@ public class Connexion extends HttpServlet {
 			
 			
 			System.out.println("Password match");
-			Utilisateur utilisateur = login.recupereUtilisateur(password);
+			Utilisateur utilisateur = login.recupereUtilisateur(username);
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
 			//request.setAttribute("utilisateur", utilisateur);
