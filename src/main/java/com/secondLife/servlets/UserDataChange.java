@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.secondLife.beans.Utilisateur;
+import com.secondLife.sql.Annonces;
 import com.secondLife.sql.Login;
 
 /**
@@ -37,7 +38,12 @@ public class UserDataChange extends HttpServlet {
 		// TODO Auto-generated method stub
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
     	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
-		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		else {
+			Annonces annonces = new Annonces("");
+			affiche("username utilisateur : "+utilisateur.getUsername());
+			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
+			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		}
 		
 	}
 
@@ -52,7 +58,9 @@ public class UserDataChange extends HttpServlet {
 		affiche ("username utilisateur : "+utilisateur.getUsername());
 		Login login = new Login();
 		if (paramAChanger == null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
-		switch(paramAChanger) {
+		else {
+			switch(paramAChanger) {
+		
 			case "username" : 
 				String username = request.getParameter("username");
 				System.out.println(login.modifieUsernameUtilisateur(username, utilisateur.getUsername()));
@@ -75,6 +83,7 @@ public class UserDataChange extends HttpServlet {
 				String email = request.getParameter("email");
 				affiche(login.modifieEmailUtilisateur(email, utilisateur.getUsername()));
 				utilisateur.setEmail(email);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
 				
 			case "adresse" :
@@ -95,7 +104,14 @@ public class UserDataChange extends HttpServlet {
 					request.setAttribute("errors", errors);
 					this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				}
-			
+				break;
+			case "vendre" :
+				Annonces annonces = new Annonces("");
+				annonces.effacerAnnonce(0)
+				
+				
+				
+		}	
 		}
 	}
 	

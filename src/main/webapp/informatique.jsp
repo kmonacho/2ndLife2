@@ -45,7 +45,16 @@
 	</tr>
 	<tr>
 		<td>		
-			<p> ${element.dateMEV}</p>
+			<p> Date de mise en vente : ${element.dateMEV}</p>
+		</td>
+	</tr>
+	<tr>
+		<td>		
+			<p> <form id="form1" name="form1" method="post" action="userDataChange">
+      <input type="submit" name="Submit" value="Supprimer l'annonce" />
+      <input name="id" type="hidden" id="data2Change" value="${element.id }" />
+        <input name="data2Change" type="hidden" id="data2Change" value="vendre" />
+    </form> </p>
 		</td>
 	</tr>
 </table>

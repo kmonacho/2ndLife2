@@ -38,8 +38,8 @@ form input {
 <table width="100%" border="0">
   <tr>
     <td width="25%" height="28" align="left" valign="middle" bgcolor="#000000"><span class="style1">Donn&eacute;es du compte utilisateur</span></td>
-    <td width="23%" bgcolor="#000000"><span class="style1"></span></td>
-    <td width="52%" bgcolor="#000000"><span class="style1"></span></td>
+    <td width="23%" bgcolor="#000000"></td>
+    <td width="52%" bgcolor="#000000"></span></td>
   </tr>
   <tr><form action="userDataChange" method="post">
     <td align="left" valign="top" bgcolor="#CCCCCC"><span class="style1">Nom d'utilisateur
@@ -125,6 +125,35 @@ form input {
     </tr>
   </table>
   </form>
+ <c:forEach items="${annonces}" var="element">
+<table width="100%" border="0">
+  <tr>
+    <td colspan="3" bgcolor="#000000"><span class="style1">${element.titre}</span></td>
+  </tr>
+  <tr>
+    <td width="33%" bgcolor="#CCCCCC"><p>${element.img}</p></td>
+    <td width="34%" bgcolor="#CCCCCC">${element.img2}</td>
+    <td width="33%" bgcolor="#CCCCCC">${element.img3}</td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="#CCCCCC"><p>${element.description};</p></td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="#CCCCCC">Date de parution de l'annonce : ${element.dateMEV}</td>
+  </tr>
+  <tr>
+    <td colspan="3" bgcolor="#CCCCCC">Prix : ${element.prix} Sfr. </td>
+    </tr>
+  <tr>
+    <td bgcolor="#CCCCCC">Vendeur : ${element.vendeur}</td>
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+    <td align="right" bgcolor="#CCCCCC"><form id="form1" name="form1" method="post" action="userDataChange">
+      <input type="submit" name="Submit" value="Supprimer l'annonce" />
+        <input name="data2Change" type="hidden" id="data2Change" value="vendre" />
+    </form>    </td>
+  </tr>
+</table>
+</c:forEach>
 
 
 <p>&nbsp; </p>
