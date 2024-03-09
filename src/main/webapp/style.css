@@ -15,12 +15,13 @@ a {
 }
 
 h1 {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-family: Arial;
 	font-size: 16px;
 	font-style: normal;
 	font-weight: normal;
 	color: #000000;
 	text-decoration: none;	
+	padding-left: 15px;	
 	
 }
 .contener {
@@ -42,7 +43,6 @@ h1 {
 	align="center";
 	font-size : 12px;
 	width : 1400px;
-	height: 640px;
 	border : 1px #DDDDDD solid;
 	text-align: left;	
 	background-color:#FFFFFF;

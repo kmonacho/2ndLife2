@@ -13,7 +13,17 @@
 <body>
 <% 
 HttpSession s = request.getSession();
-if (s.getAttribute("utilisateur")!= null) out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"deconnexion\">Se deconncecter</a><br/><a href=\"userDataChange\">Profil Utilisateur</a></div> ");
+boolean isLogged = false;
+Cookie[] cookies = request.getCookies();
+if (cookies != null ) {
+	for (Cookie cookie : cookies) {
+		if (cookie.getName().equals("2ndLife")) {
+			isLogged = true;
+		
+		}
+	}
+}
+if (s.getAttribute("utilisateur")!= null || isLogged) out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"deconnexion\">Se deconncecter</a><br/><a href=\"userDataChange\">Profil Utilisateur</a></div> ");
 else out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"connexion\">Se conncecter</a></div>");
 %>
 <table width="100%" border="0">

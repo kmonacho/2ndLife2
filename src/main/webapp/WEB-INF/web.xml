@@ -129,6 +129,14 @@
   	<servlet-name>Search</servlet-name>
   	<url-pattern>/search</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Manager</servlet-name>
+  	<servlet-class>com.secondLife.servlets.Manager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Manager</servlet-name>
+  	<url-pattern>/manager</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

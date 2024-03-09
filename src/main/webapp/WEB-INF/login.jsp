@@ -115,7 +115,7 @@ form input {
   </table>
 </form>
   </p> 
- <form id="form1" name="form1" method="get" action="upload">
+ <form id="form1" name="form1" method="post" action="vente">
   <table width="100%" border="0">
     <tr>
       <td width="25%" bgcolor="#000000"><span class="style1">Passer une annonce
