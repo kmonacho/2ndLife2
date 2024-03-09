@@ -2,6 +2,7 @@ package com.secondLife.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,7 +56,12 @@ public class Connexion extends HttpServlet {
 			Utilisateur utilisateur = login.recupereUtilisateur(username);
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
-			//request.setAttribute("utilisateur", utilisateur);
+			
+			Cookie cookie = new Cookie("2ndLife",utilisateur.getUsername());
+			cookie.setComment("2ndLife cookie for session "+ session.getId());
+			cookie.setMaxAge(60*2);
+			response.addCookie(cookie);
+			
 			Annonces annonces = new Annonces("");
 			affiche("username utilisateur : "+utilisateur.getUsername());
 			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));

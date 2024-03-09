@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,8 +52,15 @@ public class Upload extends HttpServlet {
         if ( ! uploadDir.exists() ) uploadDir.mkdir();
     }*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-    	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+    	boolean isLogged = false;
+		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) isLogged = true;
+			}
+		}
+		if (utilisateur == null || !isLogged)  this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
 		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
     /*

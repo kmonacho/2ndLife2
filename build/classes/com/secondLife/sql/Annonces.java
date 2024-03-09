@@ -23,31 +23,23 @@ import java.util.ArrayList;
 
 public class Annonces {
 	
+	String conString = "jdbc:mysql://localhost:3306/2ndLife" ;
+    String nomConnexion =  "root" ;  
+    String motDePasse =  "1Passmysqlserver$" ; 
 	
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	String conString;
+	
 	
 	public Annonces(String conString) {
-		this.conString = conString;
+		//this.conString = conString;
 	}
 	
 public ArrayList<Annonce> recupereAnnonces() {
 		
 		ArrayList<Annonce> annonces = new ArrayList<Annonce>();
-		
-		
-        String protocole =  "jdbc:mysql:" ;
-       // Adresse IP de l’hôte de la base et port
-        String ip =  "localhost" ;  // dépend du contexte
-        String port =  "3306" ;  // port MySQL par défaut
-        String nomBase =  "2ndLife" ;  // dépend du contexte
-        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-        String nomConnexion =  "root" ;  // dépend du contexte
-        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
-        
-       
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		}catch (Exception e) {
@@ -119,17 +111,6 @@ public ArrayList<Annonce> recupereAnnonces() {
 	public ArrayList<Annonce> recupereAnnonceCategorie(String categorie) {
 		
 		ArrayList<Annonce> annonces = new ArrayList<Annonce>();
-		
-		
-        String protocole =  "jdbc:mysql:" ;
-       // Adresse IP de l’hôte de la base et port
-        String ip =  "localhost" ;  // dépend du contexte
-        String port =  "3306" ;  // port MySQL par défaut
-        String nomBase =  "2ndLife" ;  // dépend du contexte
-        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-        String nomConnexion =  "root" ;  // dépend du contexte
-        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
-        
        
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -157,10 +138,7 @@ public ArrayList<Annonce> recupereAnnonces() {
 				String img2 = rs.getString("img2");
 				String img3 = rs.getString("img3");
 				String dateMEV = rs.getString("dateMEV");
-				
-				affiche(titre + " | "+ description + " | " +adresse +  " | "+ vendeur);
-				
-				
+
 				Annonce  annonce = new Annonce();
 				annonce.setId(id);
 				annonce.setTitre(titre);
@@ -200,14 +178,7 @@ public ArrayList<Annonce> recupereAnnonces() {
 	}
 	
 	public void creeAnnonce(Annonce annonce) {
-
-        String protocole =  "jdbc:mysql:" ;
-        String ip =  "localhost" ;  // dépend du contexte
-        String port =  "3306" ;  // port MySQL par défaut
-        String nomBase =  "2ndLife" ;  // dépend du contexte
-        String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-        String nomConnexion =  "root" ;  // dépend du contexte
-        String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+		
         int id=0;
        
 		try {
@@ -272,17 +243,6 @@ public ArrayList<Annonce> recupereAnnonces() {
 	public ArrayList<Annonce> recupereAnnonceUtilisateur(String username) {
 	
 	ArrayList<Annonce> annonces = new ArrayList<Annonce>();
-	
-	
-    String protocole =  "jdbc:mysql:" ;
-   // Adresse IP de l’hôte de la base et port
-    String ip =  "localhost" ;  // dépend du contexte
-    String port =  "3306" ;  // port MySQL par défaut
-    String nomBase =  "2ndLife" ;  // dépend du contexte
-    String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-    String nomConnexion =  "root" ;  // dépend du contexte
-    String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
-    
    
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -351,16 +311,7 @@ public ArrayList<Annonce> recupereAnnonces() {
 	return annonces;
 }
 	public boolean effacerAnnonce(int id) {
-		String protocole =  "jdbc:mysql:" ;
-		 // Adresse IP de l’hôte de la base et port
-		  String ip =  "localhost" ;  // dépend du contexte
-		  String port =  "3306" ;  // port MySQL par défaut
-		  String nomBase =  "2ndLife" ;  // dépend du contexte
-		  String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-		  String nomConnexion =  "root" ;  // dépend du contexte
-		  String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
-		  affiche("1");  
-		   
+		
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 			}catch (Exception e) {
@@ -394,14 +345,7 @@ public ArrayList<Annonce> recupereAnnonces() {
 	}
 	
 	public ArrayList<Annonce> chercherAnnonce(Vector<String> searchTokens) {
-		String protocole =  "jdbc:mysql:" ;
-		 // Adresse IP de l’hôte de la base et port
-		  String ip =  "localhost" ;  // dépend du contexte
-		  String port =  "3306" ;  // port MySQL par défaut
-		  String nomBase =  "2ndLife" ;  // dépend du contexte
-		  String conString = protocole +  "//" + ip +  ":" + port +  "/" + nomBase ;
-		  String nomConnexion =  "root" ;  // dépend du contexte
-		  String motDePasse =  "1Passmysqlserver$" ;  // dépend du contexte
+	
 		  ArrayList<Annonce> annonces = new ArrayList<Annonce>(); 
 		   
 			try {
@@ -431,9 +375,6 @@ public ArrayList<Annonce> recupereAnnonces() {
 							String img3 = rs.getString("img3");
 							String dateMEV = rs.getString("dateMEV");
 							
-							//affiche(titre + " | "+ description + " | " +adresse +  " | "+ vendeur);
-							
-							
 							Annonce  annonce = new Annonce();
 							annonce.setId(id);
 							annonce.setTitre(titre);
@@ -449,7 +390,6 @@ public ArrayList<Annonce> recupereAnnonces() {
 							df.setMaximumIntegerDigits(2);
 							annonce.setPrix(df.format(prix));
 							annonce.setDateMEV(dateMEV);
-							
 							
 							Iterator<String> it = searchTokens.iterator();
 							while (it.hasNext()){
@@ -480,17 +420,6 @@ public ArrayList<Annonce> recupereAnnonces() {
 			}
 		return annonces;
 	}
-	
-	/*private boolean search(String titre, String description, String vendeur, double prix, String dateMEV, String next) {
-		// TODO Auto-generated method stub
-		CharSequence cs = next;
-		if (titre.contains(cs)) return true;
-		if (description.contains(cs))return true;
-		if (vendeur.contains(cs))return true;
-		if (dateMEV.contains(cs))return true;
-		return false;
-		
-	}*/
 	
 	private boolean search(String titre, String description, String vendeur, double prix, String dateMEV, String next) {
 		// TODO Auto-generated method stub

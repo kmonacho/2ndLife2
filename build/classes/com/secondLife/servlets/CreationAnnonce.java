@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ import com.secondLife.sql.Annonces;
 
 public class CreationAnnonce extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String VUE = "/WEB-INF/upload.jsp";
-    private static final String VUE_OK = "/accueil";
+    private static final String  VUE_OK= "/WEB-INF/upload.jsp";
+    private static final String  VUE  = "/accueil";
   
     
     /**
@@ -41,9 +42,16 @@ public class CreationAnnonce extends HttpServlet {
 		// TODO Auto-generated method stub
 		//String fileName = (String)request.getAttribute("fileName");
 		//request.setAttribute("fileName", fileName);
+		boolean isLogged = false;
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-		if (utilisateur != null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
-		else this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) isLogged = true;
+			}
+		}
+		if (utilisateur != null || isLogged) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 	/**

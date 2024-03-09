@@ -3,6 +3,7 @@ package com.secondLife.servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,10 +24,29 @@ public class Vente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		boolean isLogged = false;
+		String user ="";
+		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) {
+					isLogged = true;
+					user = cookie.getValue();
+					System.out.println("isLogged "+isLogged);
+				}
+			}
+		}
+		if (utilisateur != null || isLogged) {
+			this.getServletContext().getRequestDispatcher(VUE_SESSION_IN).forward(request, response);
+			System.out.println("utilisateur != null ou isLogged = true");
+		}
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
+		/*HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 		if (utilisateur != null)this.getServletContext().getRequestDispatcher(VUE_SESSION_IN).forward(request, response);
-		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);*/
 	}
 
 	/**

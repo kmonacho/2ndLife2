@@ -48,7 +48,7 @@ public class CreationUtilisateur extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String email = request.getParameter("email");
 		String adresse = request.getParameter("adresse");
-		affiche (username);
+		
 		
 		if (errors.isEmpty()){
 			Utilisateur utilisateur = new Utilisateur();
@@ -62,14 +62,16 @@ public class CreationUtilisateur extends HttpServlet {
 		
 			Login login = new Login();
 			userRecord = login.creerUtilisateur(utilisateur);
-			
+			System.out.println("userRecord : "+userRecord);
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
 			if (userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
 			else {
-				if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
+				 request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
+				 this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 			}
 		}else {
+			if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
 			System.out.println("errors : " +errors.toString());
 			request.setAttribute("errors", errors);
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

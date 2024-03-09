@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,14 +37,27 @@ public class UserDataChange extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		boolean isLogged = false;
+		String user ="";
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-    	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
-		else {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) {
+					isLogged = true;
+					user = cookie.getValue();
+				}
+			}
+		}
+		if (utilisateur != null || isLogged) {
 			Annonces annonces = new Annonces("");
-			affiche("username utilisateur : "+utilisateur.getUsername());
-			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
+			//affiche("username utilisateur : "+utilisateur.getUsername());
+			//request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
+			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(user));
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
+		else this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+		
 		
 	}
 
