@@ -5,30 +5,9 @@
     <head>
         <meta charset="utf-8" />
         <title>Accueil 2ndLife</title>
-        <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
+        <link type="text/css" rel="stylesheet" href="<c:url value="/../style.css" />" />
 <style type="text/css">
-.contener {
-	display : grid;
-	grid-template-columns : 200px 200px 200px 200px ;
-	grid-template-rows : 200px 200px 200px 200px ;
-	gap : 20px;
-	
-}
-.box {
-	font-size : 12px;
-	width : 200px;
-	height: 300px;
-	border : 1px #DDDDDD solid;
-	text-align: left;	
-	background-color:#FFFFFF;
-}
-p {
-	margin-left: 15px;
-}
-body {
 
-	background-color:#EEEEEE
-}
 </style>
     </head>
 
@@ -60,15 +39,15 @@ body {
                 <p> Vueillez d'abord choisir les 3 images que vous souhaitez joindre à votre annonce, puis remplir les différentes informations sur l'annonce (titre, description, prix, ...).
 </p>
                 <p>
-				 Première image : <input type="file" name="multiPartServlet" accept="image/*" multiple
+				 Première image :<span class="requis">*</span> <input type="file" name="multiPartServlet" accept="image/*" multiple
                    onchange="readFilesAndDisplayPreview(this.files);" /><br>
                 </p>
                 <p>
-				 Deuxième image : <input type="file" name="multiPartServlet" accept="image/*" multiple
+				 Deuxième image : <span class="requis">*</span><input type="file" name="multiPartServlet" accept="image/*" multiple
                    onchange="readFilesAndDisplayPreview(this.files);" /><br>
                 </p>
                 <p>
-				 Troisième image : <input type="file" name="multiPartServlet" accept="image/*" multiple
+				 Troisième image : <span class="requis">*</span><input type="file" name="multiPartServlet" accept="image/*" multiple
                    onchange="readFilesAndDisplayPreview(this.files);" /><br>
                 </p>
                

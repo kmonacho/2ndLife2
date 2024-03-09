@@ -56,15 +56,15 @@ body {
                 </p>
                 <p>
 				<label for="img">Image <span class="requis">*</span></label>
-                <input type="text" id="img" name="img" value="${annonce.img}" size="50" maxlength="60" />
+                <input type="text" id="img" name="img" readonly="readonly" value="${annonce.img}" size="50" maxlength="60" />
                 </p>
                 <p>
 				<label for="img2">Image <span class="requis">*</span></label>
-                <input type="text" id="img2" name="img2" value="${annonce.img2}" size="50" maxlength="60" />
+                <input type="text" id="img2" name="img2" readonly="readonly" value="${annonce.img2}" size="50" maxlength="60" />
                 </p>
                 <p>
 				<label for="img3">Image <span class="requis">*</span></label>
-                <input type="text" id="img3" name="img3" value="${annonce.img3}" size="50" maxlength="60" />
+                <input type="text" id="img3" name="img3" readonly="readonly" value="${annonce.img3}" size="50" maxlength="60" />
                 </p>
                 <p>
               	<label for="categorie">Catégorie <span class="requis">*</span></label>
@@ -87,12 +87,12 @@ body {
 				</p>
 				<p>
 				<label for="vendeur">Nom du vendeur (nom d'utilisateur) <span class="requis">*</span></label>
-                <input type="text" id="vendeur" name="vendeur" value="" size="50" maxlength="60" />
+                <input type="text" id="vendeur" name="vendeur" readonly="readonly" value="${sessionScope.utilisateur.username }" size="50" maxlength="60" />
 				</p>
   				<p>
                 <label for="adresse">Adresse <span class="requis">*</span></label>
                 <br />
-				<textarea name="adresse" cols="60" rows="3"></textarea>
+				<textarea name="adresse" cols="60" readonly="readonly" rows="3">${sessionScope.utilisateur.adresse }</textarea>
  			    </p>
      			<input name="submit" type="submit" class="sansLabel" value="Cr&eacute;er l'anonce" />
 				</p>

@@ -7,28 +7,7 @@
         <title>Accueil 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
 <style type="text/css">
-.contener {
-	display : grid;
-	grid-template-columns : 200px 200px 200px 200px ;
-	grid-template-rows : 200px 200px 200px 200px ;
-	gap : 20px;
-	
-}
-.box {
-	font-size : 12px;
-	width : 200px;
-	height: 300px;
-	border : 1px #DDDDDD solid;
-	text-align: left;	
-	background-color:#FFFFFF;
-}
-p {
-	margin-left: 15px;
-}
-body {
 
-	background-color:#EEEEEE
-}
 </style>
     </head>
 <body>

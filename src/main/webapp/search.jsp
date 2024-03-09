@@ -4,34 +4,20 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Catégorie Informatique 2ndLife</title>
+        <title>Accueil 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
 <style type="text/css">
-.style1 {color: #FFFFFF}
+
 </style>
     </head>
 <body>
 <%@ include file="menu.jsp" %>
-<h1>Informatique</h1>
-<c:forEach items="${annonces}" var="element">
-<center><div class="annonce"><p><b>${element.titre}</b></p><a id="${element.id}"></a>
-  
-      <center> <p><img src="images/${element.img}" height="300" />;
-     <img src="images/${element.img2}" height="300" />
-      <img src= "images/${element.img3}" height="300"/></p></center>
- 
-  <p><span class="souligne">Description</span><br/>${element.description}</p>
-  <p><span class="souligne">Prix</span><br/>  ${element.prix } frs</p>
-  <p><span class="souligne">Vendeur</span><br/>  ${element.vendeur}</p>
-  <p><span class="souligne"> Date de mise en vente</span><br/> ${element.dateMEV}</p>
-</div>
-<div class="vendre"><form id="form1" name="form1" method="post" action="userDataChange">
-      <input type="submit" name="Submit" value="Acheter" />
-      <input name="id" type="hidden" id="id" value="${element.id }" />
-        <input name="data2Change" type="hidden" id="data2Change" value="vendre" />
-</div></center>
-<p> </p>
-<table width="100%" border="0">
+<h1>Resultats de la recherche</h1>
+
+<p> Mots clés recherchés : ${searchWords} 
+
+	<c:forEach items="${annonces}" var="element">
+		<table width="100%" border="0">
   <tr>
     <td bgcolor="#000000"><a id="${element.id}"></a><span class="style1"><h3>${element.titre}</h3></span></td>
   </tr>
@@ -60,37 +46,9 @@
     </form> </td>
   </tr>
 </table>
-<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
-		<p>
-		...
-		</p>
+<p>	</p>
 </c:forEach>
+	
 <%@ include file="finPage.jsp" %>
 </body>
 </html>

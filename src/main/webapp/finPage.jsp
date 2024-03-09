@@ -7,17 +7,7 @@
         <title>Pied de Page</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css"/>" />
     </head>
-    <style type="text/css">
-    a {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight:bold;
-	text-decoration: none;
-	color:#1ac21a;
-	}
-	body, p, legend, label, input {
-    	font: normal 8pt verdana, helvetica, sans-serif;
-	}
+    
     </style>
     <body>
 <table width="100%" border="0">
@@ -34,7 +24,7 @@
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td align="right"><a href="www.facebook.com" title="Connection à Facebook"><img src="images/facebook.gif" width="25" height="29" alt="Facebook" /></a><a href="www.tweeter.com" title="Connection à X"><img src="images/tweeter.gif"  alt="Tweeter" /></a><a href="www.instagram.com" title="Connection à Intstagram"><img src="images/instagram.gif" " alt="Instagram" /></a></td>
+        <td align="right"><a href="http://www.facebook.com" title="Connection à Facebook"><img src="images/facebook.gif" width="25" height="29" alt="Facebook" /></a><a href="http://www.tweeter.com" title="Connection à X"><img src="images/tweeter.gif"  alt="Tweeter" /></a><a href="http://www.instagram.com" title="Connection à Intstagram"><img src="images/instagram.gif" " alt="Instagram" /></a></td>
       </tr>
     </table>     
 </body>

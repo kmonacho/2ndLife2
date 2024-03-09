@@ -126,14 +126,17 @@ form input {
   </table>
   </form>
  <c:forEach items="${annonces}" var="element">
+<p>
 <table width="100%" border="0">
   <tr>
-    <td colspan="3" bgcolor="#000000"><span class="style1">${element.titre}</span></td>
+    <td  bgcolor="#000000"><span class="style1">${element.titre}</span></td>
+    <td  bgcolor="#000000"><span class="style1"> </span></td>
+    <td  bgcolor="#000000" align="right"><span class="style1"># ${element.id}</span></td>
   </tr>
   <tr>
-    <td width="33%" bgcolor="#CCCCCC"><p>${element.img}</p></td>
-    <td width="34%" bgcolor="#CCCCCC">${element.img2}</td>
-    <td width="33%" bgcolor="#CCCCCC">${element.img3}</td>
+    <td width="33%" bgcolor="#CCCCCC"><p><img src="images/${element.img}" width="180"/></p></td>
+    <td width="34%" bgcolor="#CCCCCC"><p><img src="images/${element.img2}" width="180"/></p></td>
+    <td width="33%" bgcolor="#CCCCCC"><p><img src="images/${element.img3}" width="180"/></p></td>
   </tr>
   <tr>
     <td colspan="3" bgcolor="#CCCCCC"><p>${element.description};</p></td>
@@ -149,10 +152,14 @@ form input {
     <td bgcolor="#CCCCCC">&nbsp;</td>
     <td align="right" bgcolor="#CCCCCC"><form id="form1" name="form1" method="post" action="userDataChange">
       <input type="submit" name="Submit" value="Supprimer l'annonce" />
+      <input name="id" type="hidden" id="id" value="${element.id}" />
         <input name="data2Change" type="hidden" id="data2Change" value="vendre" />
     </form>    </td>
   </tr>
 </table>
+</p>
+<p> 
+</p>
 </c:forEach>
 
 

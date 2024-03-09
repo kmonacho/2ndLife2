@@ -7,14 +7,7 @@
         <title>Connexion 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css" />" />
         <style type="text/css">
-        fieldset {
-    		padding: 10px;
-    		border: 1px #1ac21a solid;
-		}
-		legend {
-   			font-weight: bold;
-    		color: #0000ff
-		}
+        
         </style>
     </head>
 <body>

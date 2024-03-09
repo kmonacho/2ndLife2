@@ -121,6 +121,14 @@
   	<servlet-name>Deconnexion</servlet-name>
   	<url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Search</servlet-name>
+  	<servlet-class>com.secondLife.servlets.Search</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Search</servlet-name>
+  	<url-pattern>/search</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>Set Character Encoding</filter-name>
     <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>

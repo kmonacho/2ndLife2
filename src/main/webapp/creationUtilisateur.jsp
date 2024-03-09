@@ -7,10 +7,7 @@
         <title>Profil utilisateur 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="/../style.css" />" />
 	<style type="text/css">
-        fieldset {
-    		padding: 10px;
-    		border: 1px #1ac21a solid;
-		}
+        
      </style>
     </head>
 <body>

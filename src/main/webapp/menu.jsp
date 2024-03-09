@@ -7,26 +7,13 @@
         <title>Accueil 2ndLife</title>
         <link type="text/css" rel="stylesheet" href="<c:url value="style.css"/>" />
     <style type="text/css">
-    a {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight:bold;
-	text-decoration: none;
-	
-	color: #1ac21a
-	}
-	body, p {
-    	font: normal 8pt verdana, helvetica, sans-serif;
-	}
-	.logo {
-		font-size : 20px;	
-	}
+   
     </style>
     </head>
 <body>
 <% 
 HttpSession s = request.getSession();
-if (s.getAttribute("utilisateur")!= null) out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"deconnexion\">Se deconncecter</a></div> ");
+if (s.getAttribute("utilisateur")!= null) out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"deconnexion\">Se deconncecter</a><br/><a href=\"userDataChange\">Profil Utilisateur</a></div> ");
 else out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente\">Mettre en vente</a> | <a href=\"connexion\">Se conncecter</a></div>");
 %>
 <table width="100%" border="0">
@@ -39,14 +26,15 @@ else out.println("<div align=\"right\"><a href=\"vente\" title=\"Mettre en Vente
 <table width="100%" border="0">
   <tr>
     <td width="18%">&nbsp;</td>
-    <td width="77%"><a href="mode" tabindex="4" title="Article de mode">Mode</a> |
+    <td width="60%"><a href="mode" tabindex="1" title="Article de mode">Mode</a> |
      <a href="vehicule" tabindex="2" title="Véhicules">Vehicules</a>  
      | <a href="menageEtMaison" tabindex="3" title="Ménages & Maison">Menage & Maison</a> 
      | <a href="sport" tabindex="4" title="Sport">Sport</a> 
-     | <a href="informatique" tabindex="6" title="informatique">informatique</a></td>
+     | <a href="informatique" tabindex="5" title="informatique">informatique</a></td>
     <td width="2%">&nbsp;</td>
-    <td width="3%">&nbsp;</td>
+    <td width="20%"><form action="search" method="post"><input name="search" type="text" size="40" /><input name="Submit" type="submit" value="Chercher" />
+</form></td>
   </tr>
 </table>
 </body>
-</html>
+</a<>
