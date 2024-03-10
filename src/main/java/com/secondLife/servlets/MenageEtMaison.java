@@ -1,6 +1,8 @@
 package com.secondLife.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +18,16 @@ import com.secondLife.sql.Annonces;
 public class MenageEtMaison extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final String VUE = "/menageEtMaison.jsp";
-	
+    private String nomDB, nomDossierDB, passwordDB;
+   	private ServletConfig config;   
+
+    public void init() throws ServletException {
+		
+		this.config = this.getServletConfig();
+		nomDB = config.getInitParameter("nomDB");
+		nomDossierDB = config.getInitParameter("nomDossierDB");
+		passwordDB = config.getInitParameter("passwordDB");
+	}   
 
 
 	/**
@@ -26,7 +37,7 @@ public class MenageEtMaison extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String conString =  "";
-		Annonces annonces = new Annonces(conString);
+		Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
 		request.setAttribute("annonces", annonces.recupereAnnonceCategorie("menageEtMaison"));
 		
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

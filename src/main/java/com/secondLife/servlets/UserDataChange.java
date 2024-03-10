@@ -3,8 +3,10 @@ package com.secondLife.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,28 +24,49 @@ public class UserDataChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/WEB-INF/login.jsp"; 
 	private static final String PASSWORD_CHANGED = "/WEB-INF/passConfirmation.jsp";
-	 private static final String VUE_OUT_SESSION = "/accueil";   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserDataChange() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    private static final String VUE_OUT_SESSION = "/accueil";   
+	private String nomDB, nomDossierDB, passwordDB;
+	private ServletConfig config;    
 
+    public void init() throws ServletException {
+		
+		this.config = this.getServletConfig();
+		nomDB = config.getInitParameter("nomDB");
+		nomDossierDB = config.getInitParameter("nomDossierDB");
+		passwordDB = config.getInitParameter("passwordDB");
+		affiche("nomDB : "+nomDB+ " / "+"nomDosssierDB : "+nomDossierDB+ " / "+"passwordDB : "+passwordDB);
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		boolean isLogged = false;
+		String user ="";
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-    	if (utilisateur == null) this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
-		else {
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) {
+					isLogged = true;
+					user = cookie.getValue();
+				}
+			}
+		}
+		if (utilisateur != null ) {
 			Annonces annonces = new Annonces("");
-			affiche("username utilisateur : "+utilisateur.getUsername());
+			//affiche("username utilisateur : "+utilisateur.getUsername());
 			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
+		else if (isLogged) {
+			Annonces annonces = new Annonces("");
+			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(user));
+			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		}
+		else this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+		
 		
 	}
 
@@ -54,9 +77,9 @@ public class UserDataChange extends HttpServlet {
 		// TODO Auto-generated method stub
 		String paramAChanger = request.getParameter("data2Change");
 		HttpSession session = request.getSession();
-		Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
-		affiche ("username utilisateur : "+utilisateur.getUsername());
-		Login login = new Login();
+		Utilisateur utilisateur = new Utilisateur();
+		//affiche ("username utilisateur : "+utilisateur.getUsername());
+		Login login = new Login(nomDB, nomDossierDB, passwordDB);
 		if (paramAChanger == null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		else {
 			switch(paramAChanger) {
@@ -64,24 +87,28 @@ public class UserDataChange extends HttpServlet {
 			case "username" : 
 				String username = request.getParameter("username");
 				System.out.println(login.modifieUsernameUtilisateur(username, utilisateur.getUsername()));
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				utilisateur.setUsername(username);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
 			case "prenom" :
 				String prenom = request.getParameter("prenom");
 				affiche(login.modifiePrenomUtilisateur(prenom, utilisateur.getUsername()));
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				utilisateur.setPrenom(prenom);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
 			case "nom" :
 				String nom = request.getParameter("nom");
 				affiche(login.modifieNomUtilisateur(nom, utilisateur.getUsername()));
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				utilisateur.setNom(nom);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
 			case "email" :
 				String email = request.getParameter("email");
 				affiche(login.modifieEmailUtilisateur(email, utilisateur.getUsername()));
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				utilisateur.setEmail(email);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
@@ -89,12 +116,14 @@ public class UserDataChange extends HttpServlet {
 			case "adresse" :
 				String adresse = request.getParameter("adresse");
 				affiche(login.modifieAdresseUtilisateur(adresse, utilisateur.getUsername()));
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				utilisateur.setAdresse(adresse);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 				break;
 			case "password":
 				String password1 = request.getParameter("password1");
 				String password2 = request.getParameter("password2");
+				utilisateur = (Utilisateur)session.getAttribute("utilisateur");
 				affiche("passwords : "+password1 + " / "+password2);
 				//vérifier si les deux mots de passes sont égaux, qu'ils contiennent bien 1 majuscule, un chiffre et un caractère accentué ai moins
 				ArrayList<String> errors = passwordAccept(password1, password2);
@@ -107,8 +136,11 @@ public class UserDataChange extends HttpServlet {
 				break;
 			case "vendre" :
 				Annonces annonces = new Annonces("");
-				annonces.effacerAnnonce(0)
-				
+				int id = Integer.parseInt(request.getParameter("id"));
+				annonces.effacerAnnonce(id);
+				System.out.println("Annonce no "+id +" vendue");
+				this.getServletContext().getRequestDispatcher(VUE_OUT_SESSION).forward(request, response);
+				break;
 				
 				
 		}	

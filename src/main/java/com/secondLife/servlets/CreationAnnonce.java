@@ -2,8 +2,12 @@ package com.secondLife.servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Date;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +25,10 @@ import com.secondLife.sql.Annonces;
 
 public class CreationAnnonce extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final String VUE = "/WEB-INF/upload.jsp";
-    private static final String VUE_OK = "/accueil";
-  
+    private static final String  VUE_OK= "/WEB-INF/upload.jsp";
+    private static final String  VUE  = "/accueil";
+    private String nomDB, nomDossierDB, passwordDB;
+   	private ServletConfig config;   
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,6 +37,20 @@ public class CreationAnnonce extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+ 
+    
+    public void init() throws ServletException {
+		
+		this.config = this.getServletConfig();
+		nomDB = config.getInitParameter("nomDB");
+		nomDossierDB = config.getInitParameter("nomDossierDB");
+		passwordDB = config.getInitParameter("passwordDB");
+		affiche("nomDB : "+nomDB+ " / "+"nomDosssierDB : "+nomDossierDB+ " / "+"passwordDB : "+passwordDB);
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,9 +59,16 @@ public class CreationAnnonce extends HttpServlet {
 		// TODO Auto-generated method stub
 		//String fileName = (String)request.getAttribute("fileName");
 		//request.setAttribute("fileName", fileName);
+		boolean isLogged = false;
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
-		if (utilisateur != null) this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
-		else this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null ) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("2ndLife")) isLogged = true;
+			}
+		}
+		if (utilisateur != null || isLogged) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		else this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
 	/**
@@ -63,6 +89,9 @@ public class CreationAnnonce extends HttpServlet {
 		String prix = request.getParameter("prix");
 		System.out.println("prix : "+prix);
 		Annonce annonce = new Annonce();
+		
+		//titre = charEncoding(titre);
+		
 		annonce.setTitre(titre);
 		annonce.setDescription(description);
 		annonce.setCategorie(categorie);
@@ -71,24 +100,34 @@ public class CreationAnnonce extends HttpServlet {
 		annonce.setImg3(img3);
 		annonce.setVendeur(vendeur);
 		annonce.setAdresse(adresse);
-		double prixD =0;
-		try {
-			prixD = Double.parseDouble(prix);
-		}catch (NumberFormatException e) {e.printStackTrace();}
-		annonce.setPrix(prixD);
-		annonce.setDateMEV(new Date().toString());
+		annonce.setPrix(prix);
+		DateFormat df =  DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
+		
+		annonce.setDateMEV(df.format(new Date()));
 		
 		
 		
-		Annonces a = new Annonces("");
+		Annonces a = new Annonces(nomDB, nomDossierDB, passwordDB);
 		a.creeAnnonce(annonce);
 		//request.setAttribute("annonce", annonce);
 		//request.setAttribute("annonces", a.recupereAnnonceCategorie("informatique"));
 		request.setAttribute("annonces", a.recupereAnnonces());
-		this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
 	}
 	
+
+	private String charEncoding(String titre) {
+		String[][] = {
+				{"à","&agrave;"},
+				{"é", "&eacute;"}
+				{"è", "&egrave;"}
+				{"â", "&acirc;"}
+				{"î", "&icirc;"}
+				{"ô", "&ocirc;"}
+		}
+		return null;
+	}
 
 	private void affiche(String string) {
 		// TODO Auto-generated method stub

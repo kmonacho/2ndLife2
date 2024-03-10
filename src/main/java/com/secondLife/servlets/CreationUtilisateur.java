@@ -3,6 +3,7 @@ package com.secondLife.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.secondLife.beans.Utilisateur;
+import com.secondLife.sql.Annonces;
 import com.secondLife.sql.Login;
 
 /**
@@ -21,7 +23,23 @@ public class CreationUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VUE = "/creationUtilisateur.jsp";
 	private static final String VUE_OK = "/WEB-INF/login.jsp";
-       
+	private String nomDB, nomDossierDB, passwordDB;
+   	private ServletConfig config;   
+    
+   
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+ 
+    
+    public void init() throws ServletException {
+		
+		this.config = this.getServletConfig();
+		nomDB = config.getInitParameter("nomDB");
+		nomDossierDB = config.getInitParameter("nomDossierDB");
+		passwordDB = config.getInitParameter("passwordDB");
+		affiche("nomDB : "+nomDB+ " / "+"nomDosssierDB : "+nomDossierDB+ " / "+"passwordDB : "+passwordDB);
+	}   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,10 +66,10 @@ public class CreationUtilisateur extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String email = request.getParameter("email");
 		String adresse = request.getParameter("adresse");
-		affiche (username);
+		Utilisateur utilisateur = null;
 		
 		if (errors.isEmpty()){
-			Utilisateur utilisateur = new Utilisateur();
+			utilisateur = new Utilisateur();
 		
 			utilisateur.setUsername(username);
 			utilisateur.setPassword(password2);
@@ -60,16 +78,23 @@ public class CreationUtilisateur extends HttpServlet {
 			utilisateur.setEmail(email);
 			utilisateur.setAdresse(adresse);
 		
-			Login login = new Login();
+			Login login = new Login(nomDB, nomDossierDB, passwordDB);
 			userRecord = login.creerUtilisateur(utilisateur);
-			
+			System.out.println("userRecord : "+userRecord);
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
-			if (userRecord) this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+			if (userRecord) {
+				Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
+				affiche("username utilisateur : "+utilisateur.getUsername());
+				request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
+				this.getServletContext().getRequestDispatcher(VUE_OK).forward(request, response);
+			}
 			else {
-				if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
+				 request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
+				 this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 			}
 		}else {
+			if (!userRecord) request.setAttribute("existingUser", "Le nom d'utilisateur existe déjà !");
 			System.out.println("errors : " +errors.toString());
 			request.setAttribute("errors", errors);
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);

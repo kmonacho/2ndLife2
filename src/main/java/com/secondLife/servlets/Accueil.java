@@ -25,35 +25,24 @@ import com.secondLife.sql.Annonces;
 public class Accueil extends HttpServlet {
 	
 	private static final String VUE = "/accueil.jsp";
-    private static final String CHEMIN = "bdd";
-    private static final String CHEMIN_FICHIER = "D:/Java/Projets/2ndLife/src/main/webapp/2ndLife.ini";
-    private static final String BDD = "@BDD:";
+	private String nomDB, nomDossierDB, passwordDB;
+	private ServletConfig config;
+    
+	public void init() throws ServletException {
+		
+		this.config = this.getServletConfig();
+		if (config == null) affiche("servlet config est null");
+		nomDB = config.getInitParameter("nomDB");
+		nomDossierDB = config.getInitParameter("nomDossierDB");
+		passwordDB = config.getInitParameter("passwordDB");
+		affiche("nomDB : "+nomDB+ " / "+"nomDosssierDB : "+nomDossierDB+ " / "+"passwordDB : "+passwordDB);
+	}
 	
-    
-    /*public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-    	try {
-    		BufferedReader br = new BufferedReader(new FileReader(CHEMIN_FICHIER));
-    		String ligne;
-    		while ((ligne = br.readLine()) != null) {
-    			if (ligne.startsWith(BDD)) {
-    				System.out.println(ligne.substring(BDD.length()));
-    			}
-    		}
-    		br.close();
-    	}catch (IOException e) {
-    		e.printStackTrace();
-    	}
-    }*/
-    
-    /**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//Articles articles = new Articles("");
-		//request.setAttribute("articles", articles.recupereArticles());
-		Annonces annonces = new Annonces("");
+		Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
+		//Annonces annonces = new Annonces("");
 		request.setAttribute("annonces", annonces.recupereAnnonces());
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Annonce {
 	private String img, img2,img3, titre, description, adresse, vendeur, categorie;
-	private double prix;
+	private String prix;
 	private int id;
 	private String dateMEV;
 	
@@ -114,13 +114,13 @@ public class Annonce {
 	/**
 	 * @return the prix
 	 */
-	public double getPrix() {
+	public String getPrix() {
 		return prix;
 	}
 	/**
 	 * @param prix the prix to set
 	 */
-	public void setPrix(double prix) {
+	public void setPrix(String prix) {
 		this.prix = prix;
 	}
 	/**
