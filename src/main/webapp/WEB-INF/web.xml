@@ -12,6 +12,18 @@
   <servlet>
   	<servlet-name>Accueil</servlet-name>
   	<servlet-class>com.secondLife.servlets.Accueil</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Accueil</servlet-name>
@@ -20,6 +32,18 @@
   <servlet>
   	<servlet-name>Mode</servlet-name>
   	<servlet-class>com.secondLife.servlets.Mode</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Mode</servlet-name>
@@ -28,6 +52,18 @@
   <servlet>
   	<servlet-name>Connexion</servlet-name>
   	<servlet-class>com.secondLife.servlets.Connexion</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Connexion</servlet-name>
@@ -44,6 +80,18 @@
   <servlet>
   	<servlet-name>MenageEtMaison</servlet-name>
   	<servlet-class>com.secondLife.servlets.MenageEtMaison</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>MenageEtMaison</servlet-name>
@@ -52,6 +100,18 @@
   <servlet>
   	<servlet-name>Vehicules</servlet-name>
   	<servlet-class>com.secondLife.servlets.Vehicules</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Vehicules</servlet-name>
@@ -60,6 +120,18 @@
   <servlet>
   	<servlet-name>Informatique</servlet-name>
   	<servlet-class>com.secondLife.servlets.Informatique</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Informatique</servlet-name>
@@ -68,6 +140,18 @@
   <servlet>
   	<servlet-name>Sport</servlet-name>
   	<servlet-class>com.secondLife.servlets.Sport</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Sport</servlet-name>
@@ -76,6 +160,18 @@
   <servlet>
   	<servlet-name>CreationUtilisateur</servlet-name>
   	<servlet-class>com.secondLife.servlets.CreationUtilisateur</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>CreationUtilisateur</servlet-name>
@@ -84,6 +180,18 @@
   <servlet>
   	<servlet-name>CreationAnnonce</servlet-name>
   	<servlet-class>com.secondLife.servlets.CreationAnnonce</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>CreationAnnonce</servlet-name>
@@ -124,6 +232,18 @@
   <servlet>
   	<servlet-name>Search</servlet-name>
   	<servlet-class>com.secondLife.servlets.Search</servlet-class>
+  	<init-param>
+        <param-name>nomDB</param-name>
+        <param-value>2ndLife</param-value>
+    </init-param>
+    <init-param>
+        <param-name>nomDossierDB</param-name>
+        <param-value>root</param-value>
+    </init-param>
+    <init-param>
+        <param-name>passwordDB</param-name>
+        <param-value>1Passmysqlserver$</param-value>
+    </init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Search</servlet-name>
