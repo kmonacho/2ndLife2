@@ -74,7 +74,7 @@ public class Connexion extends HttpServlet {
 			cookie.setMaxAge(60*2);
 			response.addCookie(cookie);
 			
-			Annonces annonces = new Annonces("");
+			Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
 			affiche("username utilisateur : "+utilisateur.getUsername());
 			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
 			this.getServletContext().getRequestDispatcher(VUE_LOGIN).forward(request, response);

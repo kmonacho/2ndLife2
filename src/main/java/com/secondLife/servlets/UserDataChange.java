@@ -55,13 +55,13 @@ public class UserDataChange extends HttpServlet {
 			}
 		}
 		if (utilisateur != null ) {
-			Annonces annonces = new Annonces("");
+			Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
 			//affiche("username utilisateur : "+utilisateur.getUsername());
 			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(utilisateur.getUsername()));
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
 		else if (isLogged) {
-			Annonces annonces = new Annonces("");
+			Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
 			request.setAttribute("annonces", annonces.recupereAnnonceUtilisateur(user));
 			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 		}
@@ -135,7 +135,7 @@ public class UserDataChange extends HttpServlet {
 				}
 				break;
 			case "vendre" :
-				Annonces annonces = new Annonces("");
+				Annonces annonces = new Annonces(nomDB, nomDossierDB, passwordDB);
 				int id = Integer.parseInt(request.getParameter("id"));
 				annonces.effacerAnnonce(id);
 				System.out.println("Annonce no "+id +" vendue");

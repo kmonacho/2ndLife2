@@ -108,6 +108,54 @@ public class Login {
 		return utilisateur;
 	}
 	
+	public Utilisateur recupereUtilisateurSelonEmail( String email) {
+		String sqlText="-1";
+		Utilisateur utilisateur = new Utilisateur();
+		try {
+			boolean pasFini;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+	         
+	        con = DriverManager.getConnection(
+	                 conString, nomConnexion, motDePasse) ;
+	        stmt = con.createStatement();    
+	        sqlText = "SELECT * FROM login WHERE email = '"+email+"'";
+			
+	        results = stmt.executeQuery(sqlText);
+	       
+			// recupere le schema du resultat (nom des colonnes, type, ...)
+	        boolean tuple = results.next();
+	        String username2 = results.getString("username");
+	        String prenom = results.getString("prenom");
+	        String nom = results.getString("nom");
+	        
+	        String adresse = results.getString("adresse");
+	        
+	        utilisateur.setUsername(username2);
+	        utilisateur.setPrenom(prenom);
+	        utilisateur.setNom(nom);   
+	        utilisateur.setEmail(email);
+	        utilisateur.setAdresse(adresse);
+		}
+		catch (SQLException e) {
+			Login.printSQLError(e);
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if (results != null) 
+				try {
+					results.close();
+					stmt.close();
+					con.close();	
+				}catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
+		return utilisateur;
+	}
+	
 	public boolean creerUtilisateur(Utilisateur utilisateur) {
 
         try {
@@ -153,6 +201,43 @@ public class Login {
 		}
 		
 	}
+	
+	public boolean reinitialisePassword(String username, String password) {
+
+		 try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+			}catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+	        
+	        try {
+	        	con = DriverManager.getConnection(conString, nomConnexion, motDePasse);
+	        	String sql = "UPDATE login SET password = '"+password+"' WHERE username = '"+username +"'";
+	        	affiche(sql);
+	        	stmt = con.createStatement();
+				int resultCode = stmt.executeUpdate(sql);
+				if (resultCode > 0) return true;
+				else return false;
+	        }
+	        catch (SQLException e) {
+	        	Login.printSQLError(e);
+	        	e.printStackTrace();
+	        	return false;
+	        }
+	        catch (Exception e) { e.printStackTrace();return false;}
+	        finally {
+				if (pstmt != null) 
+					try {
+						pstmt.close();
+						con.close();	
+					}catch (Exception ex) {
+						ex.printStackTrace();
+						return false;
+					}
+			}
+	}
+	
 	
 
 	

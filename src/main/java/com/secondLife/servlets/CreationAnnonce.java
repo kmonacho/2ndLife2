@@ -115,19 +115,6 @@ public class CreationAnnonce extends HttpServlet {
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
 	}
-	
-
-	private String charEncoding(String titre) {
-		String[][] = {
-				{"à","&agrave;"},
-				{"é", "&eacute;"}
-				{"è", "&egrave;"}
-				{"â", "&acirc;"}
-				{"î", "&icirc;"}
-				{"ô", "&ocirc;"}
-		}
-		return null;
-	}
 
 	private void affiche(String string) {
 		// TODO Auto-generated method stub
